@@ -1,0 +1,53 @@
+<div class="container">
+  <form [formGroup]="itemform" (ngSubmit)="submitRegistration()" novalidate>
+    <div *ngIf="validMessage != ''">
+      <h3 class="has-info">{{validMessage}}</h3>
+    </div>
+    <div class="form-group">
+      <label>Item name</label>
+      <input type="text" class="form-control" formControlName="name" required/>
+    </div>
+    <div class="form-group">
+      <label>Photo urls</label>
+      <input type="text" class="form-control" formControlName="photoUrls" required/>
+    </div>
+    <div class="form-group">
+      <label>Offer type</label>
+      <select class="form-control" formControlName="offerType" required>
+        <option value="">Please select offer type</option>
+        <option *ngFor="let type of offerTypes"
+                [value]="type">
+                    {{type}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input type="text" class="form-control" formControlName="description" required/>
+    </div>
+    <div class="form-group">
+      <label>Categories</label>
+      <input type="text" class="form-control" formControlName="categories" required/>
+    </div>
+    <div class="form-group">
+      <label>Status</label>
+      <select class="form-control" formControlName="status" required>
+        <option value="">Please select status</option>
+        <option *ngFor="let s of status"
+                [value]="s">
+          {{s}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input type="text" class="form-control" formControlName="price" required/>
+    </div>
+    <div class="form-group">
+      <label>Location</label>
+      <input type="text" class="form-control" formControlName="location" required/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

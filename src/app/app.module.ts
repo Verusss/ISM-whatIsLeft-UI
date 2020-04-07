@@ -7,17 +7,21 @@ import { AppComponent } from './app.component';
 import { ItemService } from './services/item.service';
 import { HomeComponent } from './components/home/home.component';
 import { ItemComponent } from './components/item/item.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ItemComponent
+    ItemComponent,
+    AddItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [ItemService],
   bootstrap: [AppComponent]
