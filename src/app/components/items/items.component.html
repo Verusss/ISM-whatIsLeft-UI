@@ -1,3 +1,18 @@
+<div class="banner banner-company">
+  <h1>What is left?</h1>
+</div>
+<div class="form-group">
+  <h3>Categories</h3>
+  <div *ngFor="let category of categoriesData; let i=index">
+    <input type="checkbox" [value]="category.id" (change)="onCategoriesCheckChange($event)"> {{category.name}}
+  </div>
+</div>
+<div class="form-group">
+  <h3>Status</h3>
+  <div *ngFor="let stat of statusData; let i=index">
+    <input type="checkbox" [value]="stat" (change)="onStatusCheckChange($event)"> {{stat}}
+  </div>
+</div>
 <div class="containter">
   <table class="table table-bordered table inverse">
     <tr>

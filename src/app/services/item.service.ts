@@ -21,6 +21,14 @@ export class ItemService {
     return this.http.get('/server/v1/item/' + id);
   }
 
+  getItemsByCategory(categories: string){
+    return this.http.get('/server/v1/item/findByCategories?' + categories);
+  }
+
+  getItemsByStatus(status: string){
+    return this.http.get('/server/v1/item/findByStatus?status=' + status);
+  }
+
   createItemRegistration(item){
     this.photosArray = item.photoUrls.split(',', 100);
     item.photoUrls = [];

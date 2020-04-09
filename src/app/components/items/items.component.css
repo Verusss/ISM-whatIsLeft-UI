@@ -1,0 +1,33 @@
+.banner{
+  width: auto;
+  height: 80px;
+  margin:7px auto;
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  padding-left:20px;
+}
+
+.banner-company{
+  color:#000000;
+  background: #4691A4;
+  font-family: "Lucida Sans Unicode";
+}
+
+h1{
+  font-size: 36px;
+  margin: 0px;
+  line-height:80px;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  width:310px;
+  float:left;
+}
+
+h3 {
+  color: #4691A4;
+  margin: 7px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+}
