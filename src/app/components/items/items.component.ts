@@ -3,10 +3,10 @@ import { ItemService } from '../../services/item.service';
 
 @Component({
   selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+  templateUrl: './items.component.html',
+  styleUrls: ['./items.component.css']
 })
-export class ItemComponent implements OnInit {
+export class ItemsComponent implements OnInit {
   public items;
 
   constructor(private itemService: ItemService) { }

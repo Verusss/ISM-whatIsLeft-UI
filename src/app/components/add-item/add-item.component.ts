@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/core';
 import { ItemService } from '../../services/item.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
+import {CategoriesService} from '../../services/categories.service';
 
 @Component({
   selector: 'app-add-item',
@@ -19,15 +20,26 @@ export class AddItemComponent implements OnInit {
   ];
   itemform: FormGroup;
   validMessage = '';
-  constructor(private itemService: ItemService) { }
+  public categories;
+  constructor(private itemService: ItemService, private categoriesService: CategoriesService) {
+  }
+
+  getCategories(){
+    this.categoriesService.getCategories().subscribe(
+      data => { this.categories = data; },
+      err => console.error(err),
+      () => console.log('categories loaded')
+    );
+  }
 
   ngOnInit(): void {
+    this.getCategories();
     this.itemform = new FormGroup({
       name: new FormControl('', Validators.required),
       photoUrls: new FormControl('', Validators.required),
       offerType: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      categories: new FormControl('', Validators.required),
+      categories: new FormArray([], Validators.required),
       status: new FormControl('', Validators.required),
       price: new FormControl('', Validators.required),
       location: new FormControl('', Validators.required)
@@ -47,7 +59,25 @@ export class AddItemComponent implements OnInit {
         }
       );
     } else {
-      this.validMessage = 'Please fill out the form before submitting!';
+      this.validMessage = 'Please check if all fields are filled out correctly before submitting!';
+    }
+  }
+
+  onCheckChange(event) {
+    const formArray: FormArray = this.itemform.get('categories') as FormArray;
+
+    if (event.target.checked){
+      formArray.push(new FormControl(event.target.value));
+    }
+    else {
+      let i = 0;
+      formArray.controls.forEach((ctrl: FormControl) => {
+        if (ctrl.value === event.target.value){
+          formArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
     }
   }
 }

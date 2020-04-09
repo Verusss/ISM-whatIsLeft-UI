@@ -9,7 +9,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ItemService {
-  private categoriesArray: string[];
   private photosArray: string[];
 
   constructor(private http: HttpClient) { }
@@ -23,13 +22,6 @@ export class ItemService {
   }
 
   createItemRegistration(item){
-    this.categoriesArray = item.categories.split(',', 3);
-    console.log(this.categoriesArray);
-    item.categories = [];
-    // tslint:disable-next-line:only-arrow-functions
-    this.categoriesArray.forEach(function(value) {
-      item.categories.push(value);
-    });
     this.photosArray = item.photoUrls.split(',', 100);
     item.photoUrls = [];
     // tslint:disable-next-line:only-arrow-functions
